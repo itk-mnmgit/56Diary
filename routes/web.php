@@ -11,6 +11,5 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+//get送信で / がきた場合
+Route::get('/', 'DiaryController@index');
