@@ -9,7 +9,8 @@ use Illuminate\Foundation\Auth\Access\AuthorizesRequests;
 
 class Controller extends BaseController
 {
-    public function index(){
+    public function index()
+    {
         return 'hello world.';
     }
 }

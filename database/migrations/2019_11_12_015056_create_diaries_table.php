@@ -14,7 +14,8 @@ class CreateDiariesTable extends Migration
     public function up()
     {
         //diariesという名前のtableを作成
-        Schema::create('diaries', function (Blueprint $table) {
+        Schema::create('diaries', function (Blueprint $table)
+        {
             $table->increments('id');
             $table->string('title', 30);
             $table->text('body');

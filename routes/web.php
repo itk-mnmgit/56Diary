@@ -11,5 +11,7 @@
 |
 */
 
-//get送信で / がきた場合
-Route::get('/', 'DiaryController@index');
+//('このURLがきた時', 'コントローラ@メソッド')
+Route::get('/', 'DiaryController@index')->name('diary.index');
+Route::get('/diary/create', 'DiaryController@create')->name('diary.create');
+Route::post('/diary/store', 'DiaryController@store')->name('diary.store');

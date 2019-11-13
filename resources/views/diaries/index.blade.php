@@ -8,6 +8,9 @@
     <title>一覧表示画面</title>
 </head>
 <body>
+
+    <a href="{{ route('diary.create') }}" class="btn btn-secondary btn-lg">新規投稿</a>
+
     @foreach($diaries as $diary)
     <div class="m-4 p-4 border border-secondary">
         <p>{{$diary->title}}</p>

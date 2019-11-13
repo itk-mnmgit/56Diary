@@ -6,13 +6,15 @@ use Illuminate\Database\Seeder;
 use Carbon\Carbon;
 use Illuminate\Support\Facades\DB;
 
-class DiariesTableSeeder extends Seeder{
+class DiariesTableSeeder extends Seeder
+{
     /**
      * Run the database seeds.
      *
      * @return void
      */
-    public function run(){
+    public function run()
+    {
         //配列でサンプルデータ作成
         $diaries = [
             [
@@ -30,7 +32,8 @@ class DiariesTableSeeder extends Seeder{
         ];
 
         //配列をループで回して、テーブルにINSERTする
-        foreach ($diaries as $diary){
+        foreach ($diaries as $diary)
+        {
             DB::table('diaries')->insert([
                 'title' => $diary['title'],
                 'body' => $diary['body'],

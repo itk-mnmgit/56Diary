@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Diary;
+use App\Http\Requests\CreateDiary;
 
 class DiaryController extends Controller
 {
@@ -22,5 +23,29 @@ class DiaryController extends Controller
             //キー => 値
             'diaries' => $diaries
         ]);
+    }
+
+//日記の作成画面を表示する
+    public function create()
+    {
+        return view('diaries.create');
+    }
+
+//新しい画面を保存する画面
+    public function store(CreateDiary $request)
+    {
+        //Diaryモデルもインスタンスを作成
+        $diary = new Diary();
+        //Diaryモデルを使って、DBに日記を保存
+        // dd($request->title);
+        //インスタンス($diary)と繋がってるDB(diaries)のカラム(title)にrequestで得たtitleをぶち込む
+        $diary->title = $request->title;
+        $diary->body = $request->body;
+
+        //DBに保存
+        $diary->save();
+
+        //一覧ページにリダイレクト
+        return redirect()->route('diary.index');
     }
 }
