@@ -9,13 +9,19 @@
 </head>
 <body>
 
-    <a href="{{ route('diary.create') }}" class="btn btn-secondary btn-lg">新規投稿</a>
+    <a href="{{ route('diary.create') }}" class="btn btn-secondary btn-block">新規投稿</a>
 
     @foreach($diaries as $diary)
     <div class="m-4 p-4 border border-secondary">
         <p>{{$diary->title}}</p>
         <p>{{$diary->body}}</p>
         <p>{{$diary->created_at}}</p>
+        <form action="{{ route('diary.destroy', ['id' => $diary->id]) }}" method='POST' class='d-inline'>
+        @csrf
+        <!-- 送信方法はdeleteだよ -->
+        @method('delete')
+            <button class='btn btn-danger'>削除</button>
+        </form>
     </div>
     @endforeach
 </body>
