@@ -34,9 +34,9 @@ class CreateDiary extends FormRequest
     {
         return [
 
-        'title' => 'タイトル';
-        'body' => '本文';
+        'title' => 'タイトル',
+        'body' => '本文',
 
-        ]
+        ];
     }
 }
