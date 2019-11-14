@@ -29,4 +29,14 @@ class CreateDiary extends FormRequest
             'body' => 'required',
         ];
     }
+    //error文言を表示する際の、name属性と表示名の設定をする
+    public function attributes()
+    {
+        return [
+
+        'title' => 'タイトル';
+        'body' => '本文';
+
+        ]
+    }
 }
