@@ -19,10 +19,8 @@ class DiaryController extends Controller
 
         // views/diaries/index.blade.phpを表示
         //フォルダ名.ファイル名(blade.phpはいらない)
-        return view('diaries.index', [
-            //キー => 値
-            'diaries' => $diaries
-        ]);
+        //['キー' => 値]
+        return view('diaries.index', ['diaries' => $diaries]);
     }
 
 //日記の作成画面を表示する
@@ -63,10 +61,7 @@ class DiaryController extends Controller
     {
         $diary = Diary::find($id);
 
-        return view('diaries.edit', [
-            //キー => 値
-            'diary' => $diary
-        ]);
+        return view('diaries.edit', ['diary' => $diary]);
     }
     // 日記を更新し、一覧画面にリダイレクトする
     //$id : 編集対象の日記のID
