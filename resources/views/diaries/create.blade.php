@@ -16,7 +16,7 @@
             @endif
 
             <form action="{{ route('diary.store') }}" method="POST">
-            <!-- method POSTの時は@csrfを入れて悪意のあるアクセスを防ぐ -->
+            <!-- method POSTの時はcsrfを入れて悪意のあるアクセスを防ぐ -->
             @csrf
                 <div class="form-group">
                     <label for="title">タイトル</label>
