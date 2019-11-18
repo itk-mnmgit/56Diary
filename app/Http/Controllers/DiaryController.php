@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use App\Diary;
 use App\Http\Requests\CreateDiary;
 
+use Illuminate\Support\Facades\Auth;
+
 class DiaryController extends Controller
 {
     public function index(){
@@ -39,7 +41,7 @@ class DiaryController extends Controller
         //インスタンス($diary)と繋がってるDB(diaries)のカラム(title)にrequestで得たtitleをぶち込む
         $diary->title = $request->title;
         $diary->body = $request->body;
-
+        $diary->user_id = Auth::user()->id;
         //DBに保存
         $diary->save();
 

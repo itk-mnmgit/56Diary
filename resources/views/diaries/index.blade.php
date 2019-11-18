@@ -1,13 +1,15 @@
 <!-- layout.blade.phpを読み込む -->
-@extends('layout')
+@extends('layouts.app')
 
 @section('title', '一覧')
 
 @section('content')
-    <a href="{{ route('diary.create') }}" class="btn btn-secondary btn-block">新規投稿</a>
-
+<div class="text-center">
+    <a href="{{ route('diary.create') }}" class="btn btn-secondary">新規投稿</a>
+</div>
+<div class="d-flex justify-content-around">
     @foreach($diaries as $diary)
-    <div class="m-4 p-4 border border-secondary">
+    <div class="m-4 p-4 border border-secondary ">
         <p>{{$diary->title}}</p>
         <p>{{$diary->body}}</p>
         <p>{{$diary->created_at}}</p>
@@ -20,5 +22,5 @@
         </form>
     </div>
     @endforeach
-
+</div>
 @endsection
