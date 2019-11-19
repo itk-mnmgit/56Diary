@@ -53,15 +53,27 @@ class DiaryController extends Controller
     {
         //Diaryモデルを使用して、IDが一致する日記の取得
         $diary = Diary::find($id);
+
+        //ログインユーザーが日記の投稿者かチェックする
+        if(Auth::user()->id != $diary->user_id){
+            // 投稿者のIDとログインユーザーのIDが違う場合
+            abort(403);
+        }
+
         //取得した日記の削除
         $diary->delete();
         //一覧画面にリダイレクト
         return redirect()->route('diary.index');
     }
 
-    public function edit(int $id)
+    public function edit(Diary $diary)
     {
-        $diary = Diary::find($id);
+        //ログインユーザーが日記の投稿者かチェックする
+        if(Auth::user()->id != $diary->user_id){
+            // 投稿者のIDとログインユーザーのIDが違う場合
+            abort(403);
+        }
+        // $diary = Diary::find($id);
 
         return view('diaries.edit', ['diary' => $diary]);
     }
@@ -72,6 +84,13 @@ class DiaryController extends Controller
     {
         //受け取ったIDを元に日記を取得
         $diary = Diary::find($id);
+
+        //ログインユーザーが日記の投稿者かチェックする
+        if(Auth::user()->id != $diary->user_id){
+            // 投稿者のIDとログインユーザーのIDが違う場合
+            abort(403);
+        }
+
         //取得した日記のタイトル、本文を置き換える
         $diary->title = $request->title;
         $diary->body = $request->body;
