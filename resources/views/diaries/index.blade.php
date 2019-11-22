@@ -15,7 +15,7 @@
         <p>{{$diary->created_at}}</p>
         <div class="mt-3 ml-3">
 
-        {{-- ログインしている かつ この日記にいいねしている場合 --}}
+        {{-- ログインしている && この日記にいいねしている場合 --}}
             @if (Auth::check() && $diary->likes->contains(function ($user) {
                 return $user->id === Auth::user()->id;
             }))
@@ -23,6 +23,7 @@
             @else
                 <i class="far fa-heart fa-lg text-danger js-like"></i>
             @endif
+
             <input type="hidden" class="diary-id" value = "{{  $diary->id }}">
             <span class="js-like-num">{{ $diary->likes->count() }}</span>
         </div>

@@ -8,6 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class Diary extends Model
 {
     //日記テーブルとユーザーテーブルの多対多の接続設定
+    //普通はテーブルと同じ名前にする
     public function likes()
     {
         //diariesテーブルとusersテーブルはlikesテーブルを介して多対多の関係
