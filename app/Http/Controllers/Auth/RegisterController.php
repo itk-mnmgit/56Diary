@@ -53,7 +53,7 @@ class RegisterController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|email|max:255|unique:users',
             'password' => 'required|string|min:6|confirmed',
-            'picture' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048'
+            'picture' => 'required|image|mimes:jpeg,png,jpg,gif|max:2048',
         ]);
     }
 
@@ -65,10 +65,23 @@ class RegisterController extends Controller
      */
     protected function create(array $data)
     {
+        $imgPath = $this->saveProfileImage($data['picture']);
+
         return User::create([
             'name' => $data['name'],
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'picture_path' => $imgPath,
         ]);
+    }
+//profile画像を保存するためのメソッド
+//引数 : $image : 保存したい画像
+    private function saveProfileImage($image)
+    {
+        //storage/public/images/profilePictureに絶対に被らない名前で保存してくれる
+        //保存した後、そのファイルまでのパスを返してくれる
+        $imgPath = $image->store('images/profilePicture', 'public');
+
+        return 'storage/' . $imgPath;
     }
 }
