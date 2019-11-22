@@ -44,7 +44,7 @@ function dislike(diaryId, clickedBtn) {
     $.ajax({
         url : 'diary/' + diaryId + '/dislike',
         type : 'POST',
-        // dataType : 'json',
+        dataType : 'json',
         //CSRF対策のためのtokenを送信
         headers : {
             'X-CSRF-TOKEN':
