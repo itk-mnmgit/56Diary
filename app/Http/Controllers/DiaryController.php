@@ -14,7 +14,8 @@ class DiaryController extends Controller
         //diariesテーブルのdataを全件取得
         //取得した結果を画面で確認
 
-        $diaries = Diary::all();
+        $diaries = Diary::with('likes')->orderBy('id', 'desc')->get();
+
         // $diaries = Diary::where('title', 1)->first();
         // dd($diaries);
         //dd() var_dump と die が同時に実行される
@@ -100,5 +101,24 @@ class DiaryController extends Controller
         return redirect()->route('diary.index');
 
 
+    }
+
+    public function like(int $id)
+    {
+        //いいねされた日記の取得
+        $diary = Diary::find($id);
+        //attach : 多対多のデータを登録するメソッド
+        $diary->likes()->attach(Auth::user()->id);
+
+        //通信が成功したことを返す
+        return response()->json(['success' => 'いいね完了']);
+    }
+
+    public function dislike(int $id)
+    {
+        $diary = Diary::find($id);
+        $diary->likes()->detach(Auth::user()->id);
+
+        return response()->json(['success' => 'いいね解除完了']);
     }
 }
