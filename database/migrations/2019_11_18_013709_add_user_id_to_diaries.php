@@ -17,7 +17,7 @@ class AddUserIdToDiaries extends Migration
             //diariesテーブルにuser_idを追加
             $table->integer('user_id')->unsigned();
             //foreign : 外部キー
-            //diarieテーブルのuse_idに入る値は、必ずuserテーブルのどこかのレコードのidと一致する
+            //diarieテーブルのuser_idに入る値は、必ずuserテーブルのどこかのレコードのidと一致する
             $table->foreign('user_id')->references('id')->on('users');
         });
     }
